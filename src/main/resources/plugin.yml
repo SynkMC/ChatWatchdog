@@ -1,0 +1,14 @@
+name: ChatWatchdog
+version: '1.0'
+main: cc.synkdev.chatWatchdog.ChatWatchdog
+api-version: '1.21'
+authors: [ Synk ]
+depend:
+  - SynkLibs
+commands:
+  chatwatchdog:
+    description: "Main plugin command"
+    usage: "/chatwatchdog"
+    aliases:
+      - "cw"
+      - "watchdog"

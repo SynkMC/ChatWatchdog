@@ -1,12 +1,11 @@
-package cc.synkdev.chatWatchdog;
+package cc.synkdev.chatWatchdog.bukkit;
 
 import cc.synkdev.bstats.bukkit.Metrics;
-import cc.synkdev.chatWatchdog.commands.CWCmd;
-import cc.synkdev.chatWatchdog.managers.EventHandler;
-import cc.synkdev.chatWatchdog.managers.WordMapManager;
-import cc.synkdev.synkLibs.Lang;
-import cc.synkdev.synkLibs.SynkLibs;
-import cc.synkdev.synkLibs.Utils;
+import cc.synkdev.chatWatchdog.bukkit.commands.CWCmd;
+import cc.synkdev.chatWatchdog.bukkit.managers.EventHandler;
+import cc.synkdev.chatWatchdog.bukkit.managers.WordMapManager;
+import cc.synkdev.synkLibs.bukkit.Utils;
+import cc.synkdev.synkLibs.components.SynkPlugin;
 import lombok.Getter;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -15,11 +14,10 @@ import org.bukkit.plugin.java.JavaPlugin;
 import java.util.ArrayList;
 import java.util.List;
 
-public final class ChatWatchdog extends JavaPlugin {
-    public Lang synkLibsLang;
+public final class ChatWatchdog extends JavaPlugin implements SynkPlugin {
     private WordMapManager wmm;
     @Getter private static ChatWatchdog instance;
-    public cc.synkdev.chatWatchdog.managers.Lang lang;
+    public cc.synkdev.chatWatchdog.bukkit.managers.Lang lang;
     @Getter private Boolean delete = false;
     @Getter private Boolean defaultList = true;
     public List<String> wordsMap = new ArrayList<>();
@@ -29,15 +27,12 @@ public final class ChatWatchdog extends JavaPlugin {
     @Override
     public void onEnable() {
         instance = this;
-        Utils.setPluginPrefix(getPrefix());
-        synkLibsLang = new Lang(this);
-        lang = new cc.synkdev.chatWatchdog.managers.Lang();
+        lang = new cc.synkdev.chatWatchdog.bukkit.managers.Lang();
         wmm = new WordMapManager(this);
         initConfig();
         wmm.load();
         new Metrics(this, 23020);
-        SynkLibs.getInstance().setPluginPrefix(prefix);
-        new Utils().checkUpdate("ChatWatchdog", "1.1", "https://modrinth.com/plugin/chatwatchdog");
+        Utils.checkUpdate(this, this);
 
         Bukkit.getPluginManager().registerEvents(new EventHandler(), this);
         getCommand("chatwatchdog").setExecutor(new CWCmd());
@@ -61,5 +56,25 @@ public final class ChatWatchdog extends JavaPlugin {
     @Override
     public void onDisable() {
         // Plugin shutdown logic
+    }
+
+    @Override
+    public String name() {
+        return "ChatWatchdog";
+    }
+
+    @Override
+    public String ver() {
+        return "1.2";
+    }
+
+    @Override
+    public String dlLink() {
+        return "https://modrinth.com/plugin/chatwatchdog";
+    }
+
+    @Override
+    public String prefix() {
+        return prefix;
     }
 }

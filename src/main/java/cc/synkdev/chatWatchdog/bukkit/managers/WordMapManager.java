@@ -1,7 +1,7 @@
-package cc.synkdev.chatWatchdog.managers;
+package cc.synkdev.chatWatchdog.bukkit.managers;
 
-import cc.synkdev.chatWatchdog.ChatWatchdog;
-import cc.synkdev.synkLibs.Utils;
+import cc.synkdev.chatWatchdog.bukkit.ChatWatchdog;
+import cc.synkdev.synkLibs.bukkit.Utils;
 import net.md_5.bungee.api.chat.ClickEvent;
 import net.md_5.bungee.api.chat.TextComponent;
 import org.bukkit.ChatColor;
@@ -31,7 +31,7 @@ public class WordMapManager {
         core.wordsMap.clear();
         core.wordsMap.addAll(tempList);
         long total = System.currentTimeMillis()-time;
-        new Utils().log(ChatColor.GREEN+lang.translate("fetched", core.wordsMap.size()+"", String.valueOf(total)));
+        Utils.log(ChatColor.GREEN+lang.translate("fetched", core.wordsMap.size()+"", String.valueOf(total)));
     }
 
     private void readFile() {

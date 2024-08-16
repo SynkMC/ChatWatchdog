@@ -1,6 +1,6 @@
-package cc.synkdev.chatWatchdog.managers;
+package cc.synkdev.chatWatchdog.bukkit.managers;
 
-import cc.synkdev.chatWatchdog.ChatWatchdog;
+import cc.synkdev.chatWatchdog.bukkit.ChatWatchdog;
 import org.bukkit.ChatColor;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;

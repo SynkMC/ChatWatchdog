@@ -1,6 +1,9 @@
-package cc.synkdev.chatWatchdog.managers;
+package cc.synkdev.chatWatchdog.bukkit.managers;
 
-import cc.synkdev.chatWatchdog.ChatWatchdog;
+import cc.synkdev.chatWatchdog.bukkit.ChatWatchdog;
+import cc.synkdev.chatWatchdogAPI.bukkit.events.ChatCensorEvent;
+import cc.synkdev.chatWatchdogAPI.bukkit.events.MesageDeleteEvent;
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
@@ -19,8 +22,12 @@ public class EventHandler implements Listener {
             return;
         }
         if (core.getDelete()) {
-            event.setCancelled(wmm.containsBlockedWords(event));
-            return;
+            if (wmm.containsBlockedWords(event)) {
+                MesageDeleteEvent mde = new MesageDeleteEvent(event.getPlayer(), event.getMessage(), wmm.getBlockedSequences(event.getMessage()));
+                Bukkit.getPluginManager().callEvent(mde);
+                if (!mde.isCancelled()) event.setCancelled(true);
+                return;
+            }
         }
 
         List<String> list = wmm.getBlockedSequences(event.getMessage());
@@ -37,7 +44,12 @@ public class EventHandler implements Listener {
             message = message.replace(old, s);
         }
 
-        p.sendMessage(core.getPrefix()+ ChatColor.RED+lang.translate("wordsBlocked", list.size()+""));
-        event.setMessage(message);
+        ChatCensorEvent cce = new ChatCensorEvent(event.getPlayer(), event.getMessage(), message, list);
+        Bukkit.getPluginManager().callEvent(cce);
+
+        if (!cce.isCancelled()) {
+            p.sendMessage(core.getPrefix() + ChatColor.RED + lang.translate("wordsBlocked", list.size() + ""));
+            event.setMessage(message);
+        }
     }
 }

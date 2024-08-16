@@ -6,10 +6,10 @@
 
     <groupId>cc.synkdev</groupId>
     <artifactId>ChatWatchdog</artifactId>
-    <version>1.1</version>
+    <version>1.2</version>
     <packaging>jar</packaging>
 
-    <name>ChatFilter</name>
+    <name>ChatWatchdog</name>
 
     <properties>
         <java.version>8</java.version>
@@ -24,8 +24,8 @@
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.13.0</version>
                 <configuration>
-                    <source>${java.version}</source>
-                    <target>${java.version}</target>
+                    <source>9</source>
+                    <target>9</target>
                 </configuration>
             </plugin>
             <plugin>
@@ -71,6 +71,12 @@
 
     <dependencies>
         <dependency>
+            <groupId>net.md-5</groupId>
+            <artifactId>bungeecord-api</artifactId>
+            <version>1.21-R0.1-SNAPSHOT</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
             <groupId>org.spigotmc</groupId>
             <artifactId>spigot-api</artifactId>
             <version>1.13-R0.1-SNAPSHOT</version>
@@ -79,7 +85,7 @@
         <dependency>
             <groupId>cc.synkdev</groupId>
             <artifactId>SynkLibs</artifactId>
-            <version>1.1</version>
+            <version>1.2</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
@@ -93,6 +99,18 @@
             <artifactId>lombok</artifactId>
             <version>1.18.34</version>
             <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.bstats</groupId>
+            <artifactId>bstats-bungeecord</artifactId>
+            <version>3.0.2</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>cc.synkdev</groupId>
+            <artifactId>ChatWatchdogAPI</artifactId>
+            <version>1.0</version>
+            <scope>compile</scope>
         </dependency>
     </dependencies>
 </project>

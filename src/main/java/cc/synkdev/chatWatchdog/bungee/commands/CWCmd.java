@@ -1,24 +1,55 @@
-package cc.synkdev.chatWatchdog.commands;
+package cc.synkdev.chatWatchdog.bungee.commands;
 
-import cc.synkdev.chatWatchdog.ChatWatchdog;
-import cc.synkdev.chatWatchdog.managers.Lang;
-import cc.synkdev.chatWatchdog.managers.WordMapManager;
-import org.bukkit.ChatColor;
-import org.bukkit.command.Command;
-import org.bukkit.command.CommandExecutor;
-import org.bukkit.command.CommandSender;
-import org.bukkit.command.TabCompleter;
+import cc.synkdev.chatWatchdog.bungee.ChatWatchdogBungee;
+import cc.synkdev.chatWatchdog.bungee.managers.Lang;
+import cc.synkdev.chatWatchdog.bungee.managers.WordMapManager;
+import net.md_5.bungee.api.ChatColor;
+import net.md_5.bungee.api.CommandSender;
+import net.md_5.bungee.api.plugin.Command;
+import net.md_5.bungee.api.plugin.TabExecutor;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class CWCmd implements CommandExecutor, TabCompleter {
+public class CWCmd extends Command implements TabExecutor {
+    public CWCmd() {
+        super("chatwatchdog");
+    }
     CommandSender sender;
-    ChatWatchdog core = ChatWatchdog.getInstance();
+    ChatWatchdogBungee core = ChatWatchdogBungee.getInstance();
     WordMapManager wmm = new WordMapManager(core);
     Lang lang = new Lang();
+
     @Override
-    public boolean onCommand(CommandSender sender, Command command, String s, String[] args) {
+    public Iterable<String> onTabComplete(CommandSender sender, String[] args) {
+        List<String> argss = new ArrayList<>();
+        if (args.length == 1) {
+            if (sender.hasPermission("chatwatchdog.command.reload")) argss.add("reload");
+            if (sender.hasPermission("chatwatchdog.command.filter.list")) argss.add("filter");
+        } else if (args.length == 2) {
+            switch (args[0]) {
+                case "filter":
+                    if (sender.hasPermission("chatwatchdog.filter.edit")) {
+                        argss.add("remove");
+                        argss.add("add");
+                    }
+                    break;
+            }
+        }
+        return argss;
+    }
+    private Boolean checkPerm(String s, Boolean msg) {
+        if (!msg) {
+            return sender.hasPermission(s);
+        }
+
+        if (sender.hasPermission(s)) return true;
+        sender.sendMessage(core.getPrefix()+lang.translate("noPerm"));
+        return false;
+    }
+
+    @Override
+    public void execute(CommandSender sender, String[] args) {
         this.sender = sender;
         if (args.length==0) {
             sender.sendMessage(core.getPrefix()+lang.help());
@@ -27,7 +58,7 @@ public class CWCmd implements CommandExecutor, TabCompleter {
                 case "reload":
                     core.loadConfig();
                     wmm.load();
-                    lang.reload();
+                    lang.load();
                     sender.sendMessage(core.getPrefix()+lang.translate("reloaded"));
                     break;
                 case "filter":
@@ -73,34 +104,5 @@ public class CWCmd implements CommandExecutor, TabCompleter {
                     break;
             }
         }
-        return true;
-    }
-
-    @Override
-    public List<String> onTabComplete(CommandSender sender, Command command, String s, String[] args) {
-        List<String> argss = new ArrayList<>();
-        if (args.length == 1) {
-            if (sender.hasPermission("chatwatchdog.command.reload")) argss.add("reload");
-            if (sender.hasPermission("chatwatchdog.command.filter.list")) argss.add("filter");
-        } else if (args.length == 2) {
-            switch (args[0]) {
-                case "filter":
-                    if (sender.hasPermission("chatwatchdog.filter.edit")) {
-                        argss.add("remove");
-                        argss.add("add");
-                    }
-                    break;
-            }
-        }
-        return argss;
-    }
-    private Boolean checkPerm(String s, Boolean msg) {
-        if (!msg) {
-            return sender.hasPermission(s);
-        }
-
-        if (sender.hasPermission(s)) return true;
-        sender.sendMessage(core.getPrefix()+lang.translate("noPerm"));
-        return false;
     }
 }

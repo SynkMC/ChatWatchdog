@@ -1,7 +1,7 @@
 name: ChatWatchdog
 version: '1.0'
 main: cc.synkdev.chatWatchdog.ChatWatchdog
-api-version: '1.21'
+api-version: '1.13'
 authors: [ Synk ]
 depend:
   - SynkLibs

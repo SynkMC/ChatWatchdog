@@ -13,7 +13,6 @@ import org.bukkit.ChatColor;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public final class ChatWatchdog extends JavaPlugin {
@@ -30,6 +29,7 @@ public final class ChatWatchdog extends JavaPlugin {
     @Override
     public void onEnable() {
         instance = this;
+        Utils.setPluginPrefix(getPrefix());
         synkLibsLang = new Lang(this);
         lang = new cc.synkdev.chatWatchdog.managers.Lang();
         wmm = new WordMapManager(this);
@@ -37,7 +37,7 @@ public final class ChatWatchdog extends JavaPlugin {
         wmm.load();
         new Metrics(this, 23020);
         SynkLibs.getInstance().setPluginPrefix(prefix);
-        new Utils().checkUpdate("ChatWatchdog", "1.0", "https://modrinth.com/plugin/chatwatchdog");
+        new Utils().checkUpdate("ChatWatchdog", "1.1", "https://modrinth.com/plugin/chatwatchdog");
 
         Bukkit.getPluginManager().registerEvents(new EventHandler(), this);
         getCommand("chatwatchdog").setExecutor(new CWCmd());
@@ -45,10 +45,9 @@ public final class ChatWatchdog extends JavaPlugin {
     }
 
     public void initConfig() {
-        getConfig().options().setHeader(new ArrayList<>(Arrays.asList("If you set this to true, instead of swear words being censored, the whole message will be deleted")));
+        getConfig().options().header("If you set this to true, instead of swear words being censored, the whole message will be deleted");
         getConfig().addDefault("delete-messages", false);
         getConfig().addDefault("use-default-list", true);
-        getConfig().options().setFooter(new ArrayList<>(Arrays.asList("If you set the above to false, instead of using the default list of swear words (https://raw.githubusercontent.com/whomwah/language-timothy/master/profanity-list.txt), we'll only use the ones you setup yourself.")));
         getConfig().options().copyDefaults(true);
         saveConfig();
         loadConfig();

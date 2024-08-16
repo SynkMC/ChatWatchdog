@@ -6,13 +6,13 @@
 
     <groupId>cc.synkdev</groupId>
     <artifactId>ChatWatchdog</artifactId>
-    <version>1.0</version>
+    <version>1.1</version>
     <packaging>jar</packaging>
 
     <name>ChatFilter</name>
 
     <properties>
-        <java.version>21</java.version>
+        <java.version>8</java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
@@ -73,13 +73,13 @@
         <dependency>
             <groupId>org.spigotmc</groupId>
             <artifactId>spigot-api</artifactId>
-            <version>1.21-R0.1-SNAPSHOT</version>
+            <version>1.13-R0.1-SNAPSHOT</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>cc.synkdev</groupId>
             <artifactId>SynkLibs</artifactId>
-            <version>1.0.3</version>
+            <version>1.1</version>
             <scope>provided</scope>
         </dependency>
         <dependency>

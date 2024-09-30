@@ -99,7 +99,7 @@ public final class ChatWatchdogBungee extends Plugin implements SynkPlugin {
 
     @Override
     public String ver() {
-        return "1.2";
+        return "1.3";
     }
 
     @Override

@@ -65,7 +65,7 @@ public final class ChatWatchdog extends JavaPlugin implements SynkPlugin {
 
     @Override
     public String ver() {
-        return "1.2";
+        return "1.3";
     }
 
     @Override

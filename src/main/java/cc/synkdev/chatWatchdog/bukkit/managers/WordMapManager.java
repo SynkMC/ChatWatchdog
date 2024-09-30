@@ -10,6 +10,7 @@ import org.bukkit.event.player.AsyncPlayerChatEvent;
 
 import java.io.*;
 import java.net.URL;
+import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -162,7 +163,8 @@ public class WordMapManager {
             }
             writer.close();
             reader.close();
-            temp.renameTo(file);
+            file.delete();
+            Files.move(temp.toPath(), file.toPath());
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

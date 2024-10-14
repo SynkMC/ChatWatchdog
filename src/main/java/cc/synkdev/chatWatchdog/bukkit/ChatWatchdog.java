@@ -4,7 +4,6 @@ import cc.synkdev.bstats.bukkit.Metrics;
 import cc.synkdev.chatWatchdog.bukkit.commands.CWCmd;
 import cc.synkdev.chatWatchdog.bukkit.managers.EventHandler;
 import cc.synkdev.chatWatchdog.bukkit.managers.WordMapManager;
-import cc.synkdev.synkLibs.bukkit.Utils;
 import cc.synkdev.synkLibs.components.SynkPlugin;
 import lombok.Getter;
 import org.bukkit.Bukkit;
@@ -13,6 +12,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public final class ChatWatchdog extends JavaPlugin implements SynkPlugin {
     private WordMapManager wmm;
@@ -32,7 +32,6 @@ public final class ChatWatchdog extends JavaPlugin implements SynkPlugin {
         initConfig();
         wmm.load();
         new Metrics(this, 23020);
-        Utils.checkUpdate(this, this);
 
         Bukkit.getPluginManager().registerEvents(new EventHandler(), this);
         getCommand("chatwatchdog").setExecutor(new CWCmd());
@@ -65,7 +64,7 @@ public final class ChatWatchdog extends JavaPlugin implements SynkPlugin {
 
     @Override
     public String ver() {
-        return "1.3";
+        return "1.4";
     }
 
     @Override
@@ -76,5 +75,15 @@ public final class ChatWatchdog extends JavaPlugin implements SynkPlugin {
     @Override
     public String prefix() {
         return prefix;
+    }
+
+    @Override
+    public String lang() {
+        return null;
+    }
+
+    @Override
+    public Map<String, String> langMap() {
+        return null;
     }
 }

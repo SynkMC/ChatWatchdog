@@ -19,6 +19,7 @@ import java.io.*;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public final class ChatWatchdogBungee extends Plugin implements SynkPlugin {
     private WordMapManager wmm;
@@ -99,7 +100,7 @@ public final class ChatWatchdogBungee extends Plugin implements SynkPlugin {
 
     @Override
     public String ver() {
-        return "1.3";
+        return "1.4";
     }
 
     @Override
@@ -110,5 +111,15 @@ public final class ChatWatchdogBungee extends Plugin implements SynkPlugin {
     @Override
     public String prefix() {
         return prefix;
+    }
+
+    @Override
+    public String lang() {
+        return null;
+    }
+
+    @Override
+    public Map<String, String> langMap() {
+        return null;
     }
 }

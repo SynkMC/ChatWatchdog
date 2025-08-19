@@ -1,6 +1,0 @@
-name: ChatWatchdog
-version: '${project.version}'
-main: cc.synkdev.chatWatchdog.bungee.ChatWatchdogBungee
-author: Synk
-depends:
-  - SynkLibs

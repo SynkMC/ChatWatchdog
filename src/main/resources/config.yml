@@ -1,0 +1,3 @@
+#If you set this to true, instead of swear words being censored, the whole message will be deleted
+delete-messages: false
+use-default-list: true

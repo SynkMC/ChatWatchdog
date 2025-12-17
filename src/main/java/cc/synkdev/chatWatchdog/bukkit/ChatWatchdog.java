@@ -4,7 +4,7 @@ import cc.synkdev.bstats.bukkit.Metrics;
 import cc.synkdev.chatWatchdog.bukkit.commands.CWCmd;
 import cc.synkdev.chatWatchdog.bukkit.managers.EventHandler;
 import cc.synkdev.chatWatchdog.bukkit.managers.WordMapManager;
-import cc.synkdev.synkLibs.components.SynkPlugin;
+import cc.synkdev.nexusCore.components.NexusPlugin;
 import lombok.Getter;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -19,7 +19,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-public final class ChatWatchdog extends JavaPlugin implements SynkPlugin {
+public final class ChatWatchdog extends JavaPlugin implements NexusPlugin {
     private WordMapManager wmm;
     @Getter private static ChatWatchdog instance;
     public cc.synkdev.chatWatchdog.bukkit.managers.Lang lang;
@@ -102,7 +102,7 @@ public final class ChatWatchdog extends JavaPlugin implements SynkPlugin {
 
     @Override
     public String ver() {
-        return "1.5";
+        return "1.5.1";
     }
 
     @Override

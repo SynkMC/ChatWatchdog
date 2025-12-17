@@ -4,7 +4,7 @@ main: cc.synkdev.chatWatchdog.bukkit.ChatWatchdog
 api-version: '1.13'
 authors: [ Synk ]
 depend:
-  - SynkLibs
+  - NexusCore
 commands:
   chatwatchdog:
     description: "Main plugin command"

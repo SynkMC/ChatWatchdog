@@ -1,7 +1,7 @@
 package cc.synkdev.chatWatchdog.bukkit.managers;
 
 import cc.synkdev.chatWatchdog.bukkit.ChatWatchdog;
-import cc.synkdev.synkLibs.bukkit.Utils;
+import cc.synkdev.nexusCore.bukkit.Utils;
 import net.md_5.bungee.api.chat.ClickEvent;
 import net.md_5.bungee.api.chat.TextComponent;
 import org.bukkit.ChatColor;

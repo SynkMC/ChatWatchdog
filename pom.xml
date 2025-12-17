@@ -6,7 +6,7 @@
 
     <groupId>cc.synkdev</groupId>
     <artifactId>ChatWatchdog</artifactId>
-    <version>1.5</version>
+    <version>1.5.1</version>
     <packaging>jar</packaging>
 
     <name>ChatWatchdog</name>
@@ -78,8 +78,8 @@
         </dependency>
         <dependency>
             <groupId>cc.synkdev</groupId>
-            <artifactId>SynkLibs</artifactId>
-            <version>1.8.3</version>
+            <artifactId>NexusCore</artifactId>
+            <version>1.9.1</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
